@@ -80,6 +80,3 @@ by 5/9 and then add 273.15 to it.
 
 (19 lines)
 """
-
-if __name__ == "__main__":
-    print("Hi there!")

@@ -9,6 +9,13 @@ research skills to determine how to convert from MPG to L/100km.
 Then create a program that reads a value from the user in American units
 and display the equivalent fuel efficiency in Canadian units.
 """
+def exercise11():
+    mpg=float(input("input miles per gallon"))
+    mpg = mpg/0.621
+    mpg = mpg/3.79
+    kml= 1/mpg
+    l100km = kml*100
+    print(l100km)
 
 """
 Exercise 12:  Distance Between Two Points on Earth
@@ -45,7 +52,7 @@ def earthDistance():
     #distance = 6371.01 x arccos(sin(t1) x sin(t2) + cos(t1) x cos(t2) x cos(g1-g2))
 
     distance = 6371.01 * math.a23
-    cos(math.sin(t2) + math.cos(t1) * math.cos(t2) * math.cos(g1-g2))
+    math.cos(math.sin(t2) + math.cos(t1) * math.cos(t2) * math.cos(g1-g2))
     print(distance)
 
 earthDistance()
@@ -68,7 +75,30 @@ The two dollar coin, referred to as a toonie, was introduced 9 years later.
 It's name is derived from the combination of the number two
 and the name of the loonie.
 """
+def exercise13():
+    cents = float(input("how many cents are owed"))
+    quarters = 0
+    dimes = 0
+    nickels = 0
+    pennies = 0
+    if cents > 0.25:
+        cents = cents - 0.25
+        quarters = quarters + 1
+    elif cents > 0.10:
+        cents = cents - 0.10
+        dimes = dimes+1 
+    elif cents > 0.05:
+        cents = cents - 0.05
+        nickels = nickels + 1
+    elif cents > 0.01:
+        cents =cents - 0.01
+        pennies = pennies + 1
+    print("the change is", quarters, "quarters,")
+    print(dimes, "dimes,")
+    print(nickels,"nickles," )
+    print(pennies, "pennies")
 
+        
 """
 Exercise 14:  Height Units
 Many people think about their height in feet and inches, even in some
@@ -80,6 +110,12 @@ compute and display the equivalent number of centimeters.
 *** HINT ***
 One foot is 12 inches.  One in ch is 2.54 centimeters.
 """
+def exercise14():
+    feet = float(input("how many feet?"))
+    inches = float(input("how many inches?"))
+    inches = inches + 12*feet
+    cm = inches * 2.54
+    print("your height is", round(cm, 2), "centimeters")
 
 """
 Exercise 15:  Distance Units
@@ -93,5 +129,12 @@ the equivalent distance in inches, yards, and miles.
 63360 inches = 1760 yards = 1 mile
 """
 
-if __name__ == "__main__":
-    print("Hello World!")
+def exercise15():
+    feet = float(input("how many feet?"))
+    inch = feet * 12
+    yard = inch/36
+    miles = yard/1760
+    print(feet, "feet is,")
+    print(inch, "inches")
+    print(yard,"yards")
+    print(miles, "miles")
