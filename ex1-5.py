@@ -72,3 +72,9 @@ def bottleDeposits():
 bottleDeposits()
 #Testing Suite
 #areaRoom()
+
+
+#testingggggggggg
+def testfunction():
+    print(testing)
+testfunction()
