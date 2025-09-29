@@ -14,5 +14,7 @@ for _ in range(3):
 geoff.forward(100)
 geoff.right(90)
 
+def classnotes():
+
 # Keep the window open until clicked
 turtle.done()

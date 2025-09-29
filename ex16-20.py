@@ -98,3 +98,8 @@ def exercise20():
     n = float(input("moles:"))
     p = (n*r*t)/v
     print("the pressure is", float(p))
+
+
+
+v = [1,2,3,4]
+print(v[-3:-2])
