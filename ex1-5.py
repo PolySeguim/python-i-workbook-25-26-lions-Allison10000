@@ -93,3 +93,7 @@ bottleDeposits()
 def testfunction():
     print(testing)
 testfunction()
+
+
+def testing():
+    print("hi")
