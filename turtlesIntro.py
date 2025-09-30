@@ -37,6 +37,27 @@ def morepractice():
         myturtle.right(angle)
     screen.mainloop()
     turtle.done
-exercise = int(input(excersize:))
+def keyboardinput():
+    screen = turtle.Screen()
+    myturtle = turtle.Turtle()
+    screen.listen() #listens for keyboard input
+    def moveup():
+        myturtle.forward(50)
+    def movedown():
+        myturtle.back(50)
+    def moveright():
+        myturtle.right(45)
+    def moveleft():
+        myturtle.left(45)
+    screen.onkey(moveup, "Up") #calls a function when key is pressed that is being listened for 
+    screen.onkey(movedown, "Down")
+    screen.onkey(moveright, "Right")
+    screen.onkey(moveleft, "Left")
+    screen.mainloop()
+    turtle.done
+
+
+
+keyboardinput()
 
 
