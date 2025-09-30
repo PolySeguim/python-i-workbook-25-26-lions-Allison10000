@@ -36,29 +36,43 @@ def turtleclock():
     screen.mainloop()
 
 
-def spiralsquare():
+def squareexercise():
+    shape = input("what shape, 1 for square, 2 for spiral")
+    if shape == "spiral":
+        shape == 2
+    elif shape == "square":
+        shape == 1
+    else:
+        print("there was a spelling error")
     import turtle
     screen = turtle.Screen()
     screen.title("Clock Turtle")
     screen.bgcolor("lightgreen")
     allison = turtle.Turtle()
+    allison.speed(10)
     screen.listen()
-    #bringing turtle to top left
-    allison.penup()
-    allison.left(90)
-    allison.forward(300)
-    allison.left(90)
-    allison.forward(300)
-    allison.left(180)
-    distance = 500
-    angle = 90
-    def drawside():
-        allison.forward(distance)
-        allison.right(angle)
-    for i in range(100):
-        drawside()
-        distance = distance - 5
-        angle = angle-2
+    def spiral():
+        distance = 15
+        angle = 90
+        def drawside():
+            allison.forward(distance)
+            allison.right(angle)
+        for i in range(150):
+            drawside()
+            distance = distance + 2
+            angle = angle + 0.005
+    def square():
+        distance = 15
+        angle = 90
+        def drawside():
+            allison.forward(distance)
+            allison.right(angle)
+        for i in range(150):
+            drawside()
+            distance = distance + 2
+    if shape == 1.0:
+        square()
+    else:
+        spiral()
     screen.mainloop()
-
-spiralsquare()
+squareexercise()
