@@ -10,12 +10,12 @@ import turtle
 #geoff.right(90)
 
 # Repeat the above steps to complete the square
-for _ in range(3):
+#for _ in range(3):
 #geoff.forward(100)
 #geoff.right(90)
 
 #def classnotes():
-    myturtle=turtle.turtle()
+  #  myturtle=turtle.turtle()
 
 # Keep the window open until clicked
-turtle.done()
+#turtle.done()
