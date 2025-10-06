@@ -111,5 +111,14 @@ def squareexercise():
     elif shape == float(3):
         custom()
 
+def datapractice():
+    #idrk what im doing but im trying to recreate kinda what we were doing last year in java using resources i find online
+    inputval = input("color:")
+    color = ("red", "yellow", "blue", "green", "1")
+    value = ("1", "2", "3", "4", "5")
+    if inputval in color:
+        i = color.index(inputval)
+        print(value[i])
 
-squareexercise()
+datapractice()
+
