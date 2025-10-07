@@ -38,7 +38,14 @@ Hint:  You will need to look up the factor for converting between Joules
 and kilowatt hours to complete the last part of this exercise.
 (25 lines)
 """
-
+def exercise17():
+    mass = float(input("mass:"))
+    temp = float(input("temp change"))
+    q = (mass*4.186)*temp
+    print("the amount of energy it takes is", round(q, 2))
+    q = q/3600000
+    price = q*0.089
+    print("the price is $", price)
 """
 Exercise 18:  Volume of a Cylinder
 The volume of a cylinder can be computed by multiplying the area of its 
@@ -100,6 +107,3 @@ def exercise20():
     print("the pressure is", float(p))
 
 
-
-v = [1,2,3,4]
-print(v[-3:-2])

@@ -95,5 +95,3 @@ def testfunction():
 testfunction()
 
 
-def testing():
-    print("hi")
