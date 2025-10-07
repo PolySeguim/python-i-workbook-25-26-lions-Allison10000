@@ -120,5 +120,5 @@ def datapractice():
         i = color.index(inputval)
         print(value[i])
 
-datapractice()
+
 
