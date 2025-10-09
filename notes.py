@@ -1,6 +1,7 @@
 # def is the keyword to define a function
 # whatType is the name of the function
 # userInput is the parameter of the function
+
 def whatType(userInput):
     # print is a Python built-in function that prints to the console
     # type is a Python built-in function that finds the datatype
@@ -112,3 +113,9 @@ print(float(3.1415))
 
 print(str(1977))
 print(str(3.0))
+
+
+#10/8 notes fruitful functions
+def functionname(number,id):
+    #void function - does not return 
+    #fruitful function - returns 

@@ -121,4 +121,3 @@ def datapractice():
         print(value[i])
 
 
-
