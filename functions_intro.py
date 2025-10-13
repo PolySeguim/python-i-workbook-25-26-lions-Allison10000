@@ -107,3 +107,14 @@ def rpsgame():
             result = "lose"
     
     print("you", result)
+def pacecalculator():
+    unit= input("goal in hours or minutes:")
+    goal = float(input("time goal:"))
+    if unit == "hours":
+        goal = goal*60
+    distance = float(input("race distance in miles:"))
+    pace = goal/distance
+    print("to run", distance, "miles in", goal, "minutes, you must run at a", round(pace, 2), "minute mile")
+
+
+
