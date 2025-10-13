@@ -62,8 +62,8 @@ def exercise51():
         gpa = D
     elif letter == "F":
         gpa = F
-    print(gpa)
-exercise51()
+    return(gpa)
+
 
 
 """
@@ -76,6 +76,34 @@ between letter grades. These should be rounded to the closes letter
 grade. Your program should report A+ for a 4.0 (or greater) grade
 point average.
 """
+def exercise52(given_gpa):
+    grade = 0
+    if(given_gpa >= 4.0):
+        grade = "A+"
+    elif given_gpa >= 3.7:
+        grade = "A"
+    elif given_gpa >= 3.3:
+        grade = "A-"
+    elif given_gpa >= B:
+        grade = "B+"
+    elif given_gpa >= Bminus:
+        grade = "B"
+    elif given_gpa >= Cplus:
+        grade = "B-"
+    elif given_gpa >= C:
+        grade = "C+"
+    elif given_gpa >= Cminus:
+        grade = "C"
+    elif given_gpa >= Dplus:
+        grade = "C-"
+    elif given_gpa >= D:
+        grade = "D+"
+    elif given_gpa >= F:
+        grade = "D"
+    elif given_gpa >= 0:
+        grade = "F"
+    return(grade)
+
 """
 Exercise 66: Compute a Grade Point Average
 Exercise 51 includes a table that shows the conversion from letter
@@ -90,3 +118,10 @@ exercise. Your program does not need to do any error checking. It can
 assume that each value entered by the user will be a valid letter grade
 or a blank line.
 """
+def exercise66(grades):
+    totalgpa = 0
+    for i in len(grades):
+        totalgpa += exercise51(i)
+    totalgpa = totalgpa / len(grades)
+    print (totalgpa)
+exercise66("A","C","D","F","C+")
