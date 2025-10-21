@@ -135,7 +135,7 @@ def exercise66test():
     print (totalgpa)
 """
 
-
+#because its in the instructions, you have to imput a blank item to indicate that all the grades have been imputed 
 def exercise66(grades):
     totalgpa = 0
     for letter in grades:
@@ -144,6 +144,6 @@ def exercise66(grades):
         else:
             totalgpa += exercise51(letter)
     totalgpa = totalgpa / (len(grades)-1)
-    print (totalgpa)
+    print (round(totalgpa, 3))
 
-exercise66(["A","C+","B",""])
+exercise66(["A","C+","B","A","B", "F", "F", "D" ""])
