@@ -45,15 +45,6 @@ def factorial(x):
 #utilize the print function to debug code
 
 
-
-def gradecalculation(x):
-    numbergrade = (90, 80, 70, 60)
-    lettergrade = ("A", "B", "C", "D")
-    if x in numbergrade:
-        grade = lettergrade.index(x)
-    return grade
-
-
 """
 def distanceformula(x1,y1,x2,y2):
     return math.sqrt((x2-x1)**2+(y2-y1)**2)
@@ -107,14 +98,37 @@ def rpsgame():
             result = "lose"
     
     print("you", result)
-def pacecalculator():
-    unit= input("goal in hours or minutes:")
-    goal = float(input("time goal:"))
-    if unit == "hours":
-        goal = goal*60
-    distance = float(input("race distance in miles:"))
-    pace = goal/distance
-    print("to run", distance, "miles in", goal, "minutes, you must run at a", round(pace, 2), "minute mile")
 
+#compare function that compares two integers and returns the largest integer
+def comparefunction(int1, int2):
+    if int1 > int2:
+        return int1
+    elif int2>int1:
+        return int2
+    else:
+        return ("equal")
+
+# a fruitful hypotonuse function that returns the value of the hypotenuse given a and b 
+def hypotonuse(a,b):
+    return round(math.sqrt((a**2)+(b**2)),2)
+# a fruitful function that returns the slope of a line give (x1,y1,x2,y2)
+def slope(x1,y1,x2,y2):
+    return ((y1-y2)/(x1-x2))
+#a fruitful intercept function given two points(it should call the slope functiona)
+def intercept(x1,y1,x2,y2):
+    intercept = y1 / (slope(x1,y1,x2,y2) * x1)
+#a function that will calculate whether a number is a multiple of another number
+def multiple(num1, num2):
+    if num2 % num1 == 0:
+        return True
+    else:
+        return False
+
+#a function that will calculate whether a number is a multiple of another number
+def factor(num1, num2):
+    if num1 % num2 == 0:
+        return True
+    else:
+        return False
 
 
