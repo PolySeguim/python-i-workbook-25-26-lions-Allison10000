@@ -36,9 +36,7 @@ D = 1.0
 F = 0.0
 Invalid = -1
 
-
-def exercise51():
-    letter = input("letter grade:")
+def exercise51(letter):
     gpa = 0 
     if letter == "A+" or letter == "A":
         gpa = A
@@ -118,10 +116,34 @@ exercise. Your program does not need to do any error checking. It can
 assume that each value entered by the user will be a valid letter grade
 or a blank line.
 """
+"""
+#testing the function with imputing grades into variables
+#this function works 
+def exercise66test():
+    grade1 = input("grade1:")
+    grade2 = input("grade2")
+    grade3 = input("grade3")
+    grade4 = input("grade4")
+    grade5 = input("grade5")
+    totalgpa = 0
+    totalgpa += exercise51(grade1)
+    totalgpa += exercise51(grade2)
+    totalgpa += exercise51(grade3)
+    totalgpa += exercise51(grade4)
+    totalgpa += exercise51(grade5)
+    totalgpa = totalgpa / 5
+    print (totalgpa)
+"""
+
+
 def exercise66(grades):
     totalgpa = 0
-    for i in len(grades):
-        totalgpa += exercise51(i)
-    totalgpa = totalgpa / len(grades)
+    for letter in grades:
+        if letter == " " or letter == "":
+            break
+        else:
+            totalgpa += exercise51(letter)
+    totalgpa = totalgpa / (len(grades)-1)
     print (totalgpa)
-exercise66("A","C","D","F","C+")
+
+exercise66(["A","C+","B",""])
