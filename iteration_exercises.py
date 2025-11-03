@@ -11,9 +11,14 @@ entered by the user.  For example, if the user enters the values
 on its own line.
 """
 def exrecise108(integers):
+    intlist = []
     for i in integers:
-        if i < 0:
-        
+        intlist.append(i)
+    return intlist
+def sort108(list):
+    list.sort()
+    return list
+#print(sort108(exrecise108([2,6,3,6,3,7])))
 
 
 
@@ -31,12 +36,15 @@ program only runs when your solution has not been imported into
 another file
 """
 def exercise109(integer):
-    integer = int(integer)
-    for i in range(integer):
-        if integer%i == 0:
-            print i 
+    mylist = []
+    for i in range(1,integer):
+        if integer % i == 0:
+            mylist.append(i) 
+    return mylist
 
-exercise109(80)
+#print(exercise109(12))
+
+
 
 
 
@@ -53,5 +61,15 @@ return false.  In addition, write a main program that uses your
 function to identify and display all of the perfect numbers between 1 and
 10,000.  Import your solution to Exercise 109 when completing this task.
 """
+def exercise110(num):
+    divisors = exercise109(num)
+    divisorsum = 0 
+    for i in divisors:
+        divisorsum += i 
+    if num == divisorsum:
+        return True
+    else:
+        return False
 
-
+#print(exercise110(28))
+#print(exercise110(27))

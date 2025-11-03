@@ -38,3 +38,38 @@ def test(pass_fail):
         return False
 print(test(mysum([1,5,2,6,3])==10))
 print(test(mysum([1,5,2,6,3])==17))
+
+def mysum(xs):
+   """ Sum all the numbers in the list xs, and return the total. """
+   running_total = 0
+   for x in xs:
+       running_total = running_total + x
+   return running_total
+
+ def sum_to(n):
+    """ Return the sum of 1+2+3 ... n """
+    ss = 0
+    v = 1
+    while v <= n:
+        ss = ss + v
+        v = v + 1
+    return ss
+
+#TESTING AREA
+def test(pass_fail):
+    if pass_fail:
+        return True
+    else:
+        return False
+
+def testsuite():
+    # Add tests like these to your test suite ...
+    print(test(mysum([1, 2, 3, 4]) == 10))
+    print(test(mysum([1.25, 2.5, 1.75]) == 5.5))
+    print(test(mysum([1, -2, 3]) == 2))
+    print(test(mysum([ ]) == 0))
+    print(test(mysum(range(11)) == 55))  # 11 is not included in the list.
+    print(test(sum_to(4) == 10))
+    print(test(sum_to(1000) == 500500))
+
+testsuite()
