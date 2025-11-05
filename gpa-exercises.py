@@ -146,4 +146,4 @@ def exercise66(grades):
     totalgpa = totalgpa / (len(grades)-1)
     print (round(totalgpa, 3))
 
-exercise66(["A","C+","B","A","B", "F", "F", "D" ""])
+#exercise66(["A","C+","B","A","B", "F", "F", "D" ""])

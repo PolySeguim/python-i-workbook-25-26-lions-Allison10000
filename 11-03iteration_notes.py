@@ -71,5 +71,3 @@ def testsuite():
     print(test(mysum(range(11)) == 55))  # 11 is not included in the list.
     print(test(sum_to(4) == 10))
     print(test(sum_to(1000) == 500500))
-
-testsuite()

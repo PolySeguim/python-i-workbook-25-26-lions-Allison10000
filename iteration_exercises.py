@@ -10,16 +10,38 @@ entered by the user.  For example, if the user enters the values
 -4, -1, -2, 0 ,0 , 3, and 1.  Your program should display each value 
 on its own line.
 """
+#without user input
 def exrecise108(integers):
     intlist = []
     for i in integers:
         intlist.append(i)
     return intlist
-def sort108(list):
+#with user input
+def exercise1082():
+    intlist = []
+    try: 
+        userinput = int(input("input:"))
+        while userinput != "":
+            intlist.append(userinput)
+    except:
+       print("error")
+def sort108differently(list)
     list.sort()
     return list
-#print(sort108(exrecise108([2,6,3,6,3,7])))
-
+def sort108(list):
+    l1 =[]
+    l2=[]
+    l3=[]
+    for i in list:
+        if i > 0:
+            l3.append(i)
+        if i <0:
+            l1.append(i)
+        if i == 0:
+            l2.append(i)
+    return (l1,l2,l3)
+print(sort108(exrecise108([2,6,3,6,3,7])))
+print(sort108differently(exrecise108([2,6,3,7,4,7,-3,3,0,-5,5])))
 
 
 """
@@ -73,3 +95,54 @@ def exercise110(num):
 
 #print(exercise110(28))
 #print(exercise110(27))
+
+#more excersizes from the book
+"""
+exercise 111: perfect numbers
+in this excersese you will create a program that identifies all of the words in a string
+entered by the user. begin by writing a function that takes a string of text as its only 
+paramater your function should return a list of words in a string with the punctuation 
+marks at the edges of the words removed. the punctuation makes that you must remove 
+include commoas, periods, question marks, hyphens, apostrophes, explanationn points, 
+colons, and semicolons. Do not remove punctuation marks that appear in the middle of words.
+ for example, if the function is provided with "examples of contractions include: don't, isn't
+   and wouldn't" then returns the list ["examples", "of", etc.]
+"""
+def exercise111(words):
+    origionallist = []
+    for i in words:
+        origionallist.append(i)
+    for i in origionallist:
+        print(i)#spaceholder
+
+
+
+"""
+excersize 112: remove outliers 
+takes a list of numbers and removes the two largest and two smallest numbers, if there are
+less than 4 values entered, show an error code"""
+"""def exercise112(values):
+    mylist = []
+    for i in values:
+        try:
+            i = float(i)
+            mylist.append(i)
+        except TypeError:
+            print("type error")
+    mylist.sort()
+    if mylist.len < 4:
+        print("error, less than 4 values entered")
+        return
+    mylist.remove[0,1]
+    k = mylist.len()
+    h = mylist.len()-1
+    mylist.remove[k,h]
+    return(mylist)"""
+def exercise112(values):
+    mylist = []
+    for i in values:
+            mylist.append(i)
+    mylist.sort()
+    mylist = mylist[2:-2]
+    return(mylist)
+#print(exercise112([7,2,525,2,5,46,9,242]))
