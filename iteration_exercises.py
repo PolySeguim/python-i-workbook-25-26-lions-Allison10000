@@ -10,12 +10,7 @@ entered by the user.  For example, if the user enters the values
 -4, -1, -2, 0 ,0 , 3, and 1.  Your program should display each value 
 on its own line.
 """
-#without user input
-def exrecise108(integers):
-    intlist = []
-    for i in integers:
-        intlist.append(i)
-    return intlist
+
 #with user input
 def exercise1082():
     intlist = []
@@ -25,9 +20,6 @@ def exercise1082():
             intlist.append(userinput)
     except:
        print("error")
-def sort108differently(list)
-    list.sort()
-    return list
 def sort108(list):
     l1 =[]
     l2=[]
@@ -40,8 +32,18 @@ def sort108(list):
         if i == 0:
             l2.append(i)
     return (l1,l2,l3)
-print(sort108(exrecise108([2,6,3,6,3,7])))
-print(sort108differently(exrecise108([2,6,3,7,4,7,-3,3,0,-5,5])))
+
+#this is the way that i had origionally done it, its different than in class but I think it works better and its more efficient 
+def exrecise108(integers):
+    intlist = []
+    for i in integers:
+        intlist.append(i)
+    return intlist
+def sort108differently(list):
+    list.sort()
+    return list
+#print(sort108(exrecise108([2,6,3,6,3,7])))
+#print(sort108differently(exrecise108([2,6,3,7,4,7,-3,3,0,-5,5])))
 
 
 """
@@ -109,11 +111,11 @@ colons, and semicolons. Do not remove punctuation marks that appear in the middl
    and wouldn't" then returns the list ["examples", "of", etc.]
 """
 def exercise111(words):
-    origionallist = []
-    for i in words:
-        origionallist.append(i)
-    for i in origionallist:
-        print(i)#spaceholder
+    string = words.split()
+    for i in string:
+        
+    print (string)
+exercise111("hello my nae is allison")
 
 
 
@@ -121,28 +123,14 @@ def exercise111(words):
 excersize 112: remove outliers 
 takes a list of numbers and removes the two largest and two smallest numbers, if there are
 less than 4 values entered, show an error code"""
-"""def exercise112(values):
-    mylist = []
-    for i in values:
-        try:
-            i = float(i)
-            mylist.append(i)
-        except TypeError:
-            print("type error")
-    mylist.sort()
-    if mylist.len < 4:
-        print("error, less than 4 values entered")
-        return
-    mylist.remove[0,1]
-    k = mylist.len()
-    h = mylist.len()-1
-    mylist.remove[k,h]
-    return(mylist)"""
 def exercise112(values):
     mylist = []
     for i in values:
             mylist.append(i)
     mylist.sort()
+    if mylist.len() > 4:
+        return False
     mylist = mylist[2:-2]
     return(mylist)
 #print(exercise112([7,2,525,2,5,46,9,242]))
+#print(exercise112([7,2,525]))

@@ -71,3 +71,9 @@ def testsuite():
     print(test(mysum(range(11)) == 55))  # 11 is not included in the list.
     print(test(sum_to(4) == 10))
     print(test(sum_to(1000) == 500500))
+
+
+
+#csv file = comma seperated values file 
+# it will look like value1, value2, value3
+#the first like will be column names
