@@ -88,3 +88,4 @@ def exercise10():
     print("the remainder when a is divided by b is", a%b)
     print("the result of a to the power of b is", a**b)
 
+

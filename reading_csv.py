@@ -26,7 +26,7 @@ def read_csv(file_name):
         with open(file_name, mode="r", newline='', encoding = 'utf-8') as file:
             reader = csv.DictReader(file)
             for row in reader:
-                resteraunts.append(row['resteraunt'])
+                resteraunts.append(row['restaurant'])
                 items.append(row['item'])
                 types.append(row['type'])
                 serving_size.append(float(row['serving_size']))
@@ -35,14 +35,12 @@ def read_csv(file_name):
                 sodium.append(float(row['sodium']))
                 sugars.append(float(row['sugars']))
 
-def calculateaverages(list_of_values):
-     print("")
 
 
 #count items 
 def countitems(resteraunt_name):
      itemsinresteraunt = 0
-     for i in resteraunts:
+     for i in range(len(resteraunts)):
           if (resteraunts[i]==resteraunt_name):
                items +=1
      return itemsinresteraunt
@@ -68,9 +66,9 @@ def minvalue(resteraunt_name, classification):
     return items[values[1]]
 
 #sugars per resteraunt
-def sugarsperresteraunt(sugars, resteraunt_name):
+def sugarsperresteraunt(resteraunt_name):
     sugars_per = {}
-    for i in resteraunts:
+    for i in range(len(resteraunts)):
           if (resteraunts[i]==resteraunt_name):
                sugars_per.append(sugars[i])
     return sum(sugars_per)
@@ -88,9 +86,9 @@ def main():
     print("macdonals has", countitems("Macdonalds"), "items")
     #max value for 
 
-main()
-
-
+file_path = choose_file()
+read_csv(file_path)
+print(sugarsperresteraunt('Burger King'))
 
 
 
