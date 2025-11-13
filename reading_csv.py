@@ -31,7 +31,7 @@ def read_csv(file_name):
                 types.append(row['type'])
                 serving_size.append(float(row['serving_size']))
                 calories.append(float(row['calories']))
-                fats.append(float(row['fats']))
+                fats.append(float(row['fat']))
                 sodium.append(float(row['sodium']))
                 sugars.append(float(row['sugars']))
 
@@ -47,7 +47,7 @@ def countitems(resteraunt_name):
 
 
 #max value
-def minvalue(resteraunt_name, classification):
+def maxvalue(resteraunt_name, classification):
     values = []
     for i in resteraunts:
           if resteraunts[i]==resteraunt_name:
@@ -65,15 +65,16 @@ def minvalue(resteraunt_name, classification):
     values.sort()
     return items[values[1]]
 
-#sugars per resteraunt
+#sugars per restaurant
 def sugarsperresteraunt(resteraunt_name):
-    sugars_per = {}
+    sugars_per = []
     for i in range(len(resteraunts)):
           if (resteraunts[i]==resteraunt_name):
                sugars_per.append(sugars[i])
     return sum(sugars_per)
 
-
+#dictionary = {}
+#list = []
 
 def main():
     # Read and load data from a CSV file
@@ -81,14 +82,27 @@ def main():
     #read_file(file_path)
     read_csv(file_path)
     #sugers per 
-    print("sugars for burgerking ", sugarsperresteraunt(sugars, "Burger King"))
+    print("the total sugars for burgerking are", sugarsperresteraunt("Burger King"))
+    print("the total sugars for McDonald's are", sugarsperresteraunt("McDonald's"))
+    print("the total sugars for Chick-fil-A are", sugarsperresteraunt("Chick-fil-A"))
     #items per resteraunt 
-    print("macdonals has", countitems("Macdonalds"), "items")
+    print("macdonals has", countitems("McDonald's"), "items")
+    print("Jack in the Box  has", countitems("Jack in the Box "), "items")
+    print("Sonic has", countitems("Sonic"), "items")
+    print("Dairy Queen has", countitems("Dairy Quee"), "items")
+    print("Carl's Jr. has", countitems("Carl's Jr."), "items")
     #max value for 
+    print("the least caloric item at Dairy Queen is", minvalue('Dairy Queen', 'calories'))
+    print("the least caloric item at White Castle is", minvalue('White Castle', 'calories'))
+    print("the least caloric item at Carl's Jr. is", minvalue("Carl's Jr.", 'calories'))
+    print("the item with the most sodium item at Carl's Jr. is", minvalue("Carl's Jr.", 'sodium'))
+    print("the item with the most fat item at McDonald's is", minvalue("McDonald's", 'fat'))
+    # min value 
+    print("the item with the most calories at McDonald's is", maxvalue("McDonald's", 'calories'))
+    print("the item with the most calories at Dairy Queen is", maxvalue("Dairy Queen", 'calories'))
+    print("the item with the most sodium at Dairy Queen is", maxvalue("Dairy Queen", 'sodim'))
 
-file_path = choose_file()
-read_csv(file_path)
-print(sugarsperresteraunt('Burger King'))
 
+main()
 
 
