@@ -37,13 +37,40 @@ def read_csv(file_name):
 
 def calculateaverages(list_of_values):
      print("")
+
+
 #count items 
+def countitems(resteraunt_name):
+     itemsinresteraunt = 0
+     for i in resteraunts:
+          if (resteraunts[i]==resteraunt_name):
+               items +=1
+     return itemsinresteraunt
+
+
 #max value
+def minvalue(resteraunt_name, classification):
+    values = []
+    for i in resteraunts:
+          if resteraunts[i]==resteraunt_name:
+               values.append(classification[i])
+    values.sort()
+    return items[values[-1]]
+
+
 #min value 
+def minvalue(resteraunt_name, classification):
+    values = []
+    for i in resteraunts:
+          if resteraunts[i]==resteraunt_name:
+               values.append(classification[i])
+    values.sort()
+    return items[values[1]]
+
 #sugars per resteraunt
 def sugarsperresteraunt(sugars, resteraunt_name):
     sugars_per = {}
-    for i in range(len(resteraunts)):
+    for i in resteraunts:
           if (resteraunts[i]==resteraunt_name):
                sugars_per.append(sugars[i])
     return sum(sugars_per)
@@ -55,12 +82,15 @@ def main():
     file_path = choose_file()
     #read_file(file_path)
     read_csv(file_path)
+    #sugers per 
     print("sugars for burgerking ", sugarsperresteraunt(sugars, "Burger King"))
+    #items per resteraunt 
+    print("macdonals has", countitems("Macdonalds"), "items")
+    #max value for 
+
 main()
 
 
-
-#correct 
 
 
 
