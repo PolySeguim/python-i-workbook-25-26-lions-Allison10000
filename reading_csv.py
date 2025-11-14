@@ -20,6 +20,8 @@ calories = []
 fats = []
 sodium = []
 sugars = []
+list_data = []
+unique_resteraunts = set()
 
 
 def read_csv(file_name):
@@ -42,7 +44,7 @@ def countitems(resteraunt_name):
      itemsinresteraunt = 0
      for i in range(len(resteraunts)):
           if (resteraunts[i]==resteraunt_name):
-               items +=1
+               itemsinresteraunt +=1
      return itemsinresteraunt
 
 
@@ -55,24 +57,44 @@ def maxvalue(resteraunt_name, classification):
     values.sort()
     return items[values[-1]]
 
+#average value
+def averagevalue(reteraunt_name, classification):
+    values = []
+    average = 0 
+    for i in resteraunts:
+          if resteraunts[i] == reteraunt_name:
+               values.append(classification[i])
+    for i in range(len(values)):
+         average += values[i]
+    average = average / len(values)
+    return average 
 
 #min value 
 def minvalue(resteraunt_name, classification):
-    values = []
-    for i in resteraunts:
+    minvalue = float('inf')
+    for i in range(len(resteraunts)):
           if resteraunts[i]==resteraunt_name:
-               values.append(classification[i])
-    values.sort()
-    return items[values[1]]
+               if classification[i] < minvalue:
+                    minvalue=classification[i]
+    #values.sort()
+    return minvalue
 
 #sugars per restaurant
-def sugarsperresteraunt(resteraunt_name):
+def sugarsperresteraunt(sugars, resteraunt_name):
     sugars_per = []
     for i in range(len(resteraunts)):
           if (resteraunts[i]==resteraunt_name):
                sugars_per.append(sugars[i])
     return sum(sugars_per)
-
+def resteraunts_sugar_report(myresteraunt):
+     report = {}
+     for resteraunt in unique_resteraunts:
+          total_sugars = 0 
+          for i in range(len(resteraunts)):
+               if resteraunts[i] == myresteraunt:
+                    total_sugars += sugars[i]
+          report[resteraunt]=total_sugars
+     return report
 #dictionary = {}
 #list = []
 
@@ -81,28 +103,32 @@ def main():
     file_path = choose_file()
     #read_file(file_path)
     read_csv(file_path)
+
+    #resteraunt calorie report 
+    report = resteraunts_sugar_report("McDonald's")
+    for result in report:
+        print(result, ":", report[result])
+    print(resteraunts_sugar_report("Dairy Queen"))
+    print("n/")
+
     #sugers per 
+    """
     print("the total sugars for burgerking are", sugarsperresteraunt("Burger King"))
-    print("the total sugars for McDonald's are", sugarsperresteraunt("McDonald's"))
-    print("the total sugars for Chick-fil-A are", sugarsperresteraunt("Chick-fil-A"))
     #items per resteraunt 
     print("macdonals has", countitems("McDonald's"), "items")
-    print("Jack in the Box  has", countitems("Jack in the Box "), "items")
-    print("Sonic has", countitems("Sonic"), "items")
-    print("Dairy Queen has", countitems("Dairy Quee"), "items")
-    print("Carl's Jr. has", countitems("Carl's Jr."), "items")
     #max value for 
     print("the least caloric item at Dairy Queen is", minvalue('Dairy Queen', 'calories'))
-    print("the least caloric item at White Castle is", minvalue('White Castle', 'calories'))
-    print("the least caloric item at Carl's Jr. is", minvalue("Carl's Jr.", 'calories'))
     print("the item with the most sodium item at Carl's Jr. is", minvalue("Carl's Jr.", 'sodium'))
     print("the item with the most fat item at McDonald's is", minvalue("McDonald's", 'fat'))
     # min value 
     print("the item with the most calories at McDonald's is", maxvalue("McDonald's", 'calories'))
-    print("the item with the most calories at Dairy Queen is", maxvalue("Dairy Queen", 'calories'))
-    print("the item with the most sodium at Dairy Queen is", maxvalue("Dairy Queen", 'sodim'))
+"""
 
-
-main()
-
+file_path = choose_file()
+read_csv(file_path)
+print(minvalue("Dairy Queen", calories))#does not work
+#print(sugarsperresteraunt(sugars, 'Dairy Queen'))
+#print(averagevalue('Dairy Queen', calories)) #does not work 
+#print(maxvalue('Dairy Queen', calories))#does not work 
+#print(countitems('Dairy Queen'))
 
