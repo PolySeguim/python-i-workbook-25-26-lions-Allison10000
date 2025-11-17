@@ -36,9 +36,6 @@ def read_csv(file_name):
                 fats.append(float(row['fat']))
                 sodium.append(float(row['sodium']))
                 sugars.append(float(row['sugars']))
-
-
-
 #count items 
 def countitems(resteraunt_name):
      itemsinresteraunt = 0
@@ -46,39 +43,38 @@ def countitems(resteraunt_name):
           if (resteraunts[i]==resteraunt_name):
                itemsinresteraunt +=1
      return itemsinresteraunt
-
-
 #max value
 def maxvalue(resteraunt_name, classification):
-    values = []
-    for i in resteraunts:
+    maxvalue = 0
+    for i in range(len(resteraunts)):
           if resteraunts[i]==resteraunt_name:
-               values.append(classification[i])
-    values.sort()
-    return items[values[-1]]
-
+               if classification[i] > maxvalue:
+                    maxvalue=classification[i]
+    #values.sort()
+    return maxvalue
 #average value
 def averagevalue(reteraunt_name, classification):
     values = []
     average = 0 
-    for i in resteraunts:
+    for i in range(len(resteraunts)):
           if resteraunts[i] == reteraunt_name:
                values.append(classification[i])
     for i in range(len(values)):
          average += values[i]
     average = average / len(values)
-    return average 
-
+    return round(average,1)
 #min value 
 def minvalue(resteraunt_name, classification):
-    minvalue = float('inf')
+    minvalue = 10000000
     for i in range(len(resteraunts)):
           if resteraunts[i]==resteraunt_name:
                if classification[i] < minvalue:
                     minvalue=classification[i]
     #values.sort()
-    return minvalue
-
+    if minvalue == 10000000:
+         return "error"
+    else:
+         return minvalue
 #sugars per restaurant
 def sugarsperresteraunt(sugars, resteraunt_name):
     sugars_per = []
@@ -87,48 +83,33 @@ def sugarsperresteraunt(sugars, resteraunt_name):
                sugars_per.append(sugars[i])
     return sum(sugars_per)
 def resteraunts_sugar_report(myresteraunt):
-     report = {}
-     for resteraunt in unique_resteraunts:
-          total_sugars = 0 
-          for i in range(len(resteraunts)):
-               if resteraunts[i] == myresteraunt:
-                    total_sugars += sugars[i]
-          report[resteraunt]=total_sugars
+     report = []
+     for i in range(len(resteraunts)):
+          if resteraunts[i] == myresteraunt:
+               report.append(sugars[i])
      return report
-#dictionary = {}
-#list = []
+
+
 
 def main():
     # Read and load data from a CSV file
     file_path = choose_file()
     #read_file(file_path)
     read_csv(file_path)
-
-    #resteraunt calorie report 
-    report = resteraunts_sugar_report("McDonald's")
-    for result in report:
-        print(result, ":", report[result])
-    print(resteraunts_sugar_report("Dairy Queen"))
-    print("n/")
-
     #sugers per 
-    """
-    print("the total sugars for burgerking are", sugarsperresteraunt("Burger King"))
+    print("the total sugars for burgerking are", sugarsperresteraunt(sugars, "Burger King"))
     #items per resteraunt 
-    print("macdonals has", countitems("McDonald's"), "items")
+    print("macdonals has", countitems("Dairy Queen"), "items")
+    print("Hardee's has", countitems("Hardee's"), "items")
     #max value for 
-    print("the least caloric item at Dairy Queen is", minvalue('Dairy Queen', 'calories'))
-    print("the item with the most sodium item at Carl's Jr. is", minvalue("Carl's Jr.", 'sodium'))
-    print("the item with the most fat item at McDonald's is", minvalue("McDonald's", 'fat'))
+    print("the least caloric item at Dairy Queen is", minvalue('Dairy Queen', calories))
+    print("the item with the most sodium item at Carl's Jr. is", minvalue("Carl's Jr.", sodium))
+    print("the item with the most fat item at McDonald's is", minvalue("McDonald's", fats))
     # min value 
-    print("the item with the most calories at McDonald's is", maxvalue("McDonald's", 'calories'))
-"""
+    print("the item with the most calories at McDonald's is", maxvalue("McDonald's", calories))
+    print("the item with the most fat at Wendy's is", maxvalue("Wendy's", calories))
+    #sugar report 
+    print("the sugars of the items at White Castle are", resteraunts_sugar_report("White Castle"))
 
-file_path = choose_file()
-read_csv(file_path)
-print(minvalue("Dairy Queen", calories))#does not work
-#print(sugarsperresteraunt(sugars, 'Dairy Queen'))
-#print(averagevalue('Dairy Queen', calories)) #does not work 
-#print(maxvalue('Dairy Queen', calories))#does not work 
-#print(countitems('Dairy Queen'))
 
+main()
