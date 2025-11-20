@@ -1,4 +1,5 @@
 import tkinter as tk
+import statistics
 from tkinter import filedialog
 import csv
 
@@ -88,8 +89,33 @@ def resteraunts_sugar_report(myresteraunt):
           if resteraunts[i] == myresteraunt:
                report.append(sugars[i])
      return report
+#this function will return the total values of all of a category 
+def totalvalue(resteraunt_name, classification):
+     totalvalue = 0
+     for i in range(len(resteraunts)):
+          if resteraunts[i] == resteraunt_name:
+               totalvalue += classification[i]
+     return totalvalue
+def meanvalue(resteraunt_name, list):
+    mean = 0
+    list2 = []
+    for i in range(len(resteraunts)):
+         if resteraunt_name == resteraunts[i]:
+              list2.append(list[i])
+    n = len(list2)
+    for i in range(n):
+        mean += list2[i]
+    mean = mean/n
+    return mean
+def standarddev(resterauntnatme, classification):
+    newlist = []
+    for i in range(len(resteraunts)):
+         if resterauntnatme == resteraunts[i]:
+              newlist.append(classification)
+    s = statistics.stdev(newlist)
+    return s 
 
-
+#sorry i did all the statistics manually before i found out that there were statstics functions 
 
 def main():
     # Read and load data from a CSV file
@@ -110,6 +136,12 @@ def main():
     print("the item with the most fat at Wendy's is", maxvalue("Wendy's", calories))
     #sugar report 
     print("the sugars of the items at White Castle are", resteraunts_sugar_report("White Castle"))
-
+    #total values in all items 
+    print("the combined sugars of all the items at Hardee's is", totalvalue("Hardee's", sugars))
+    print("the value of all the calories at macdonalds combined is", totalvalue("McDonald's", calories))
+    #average value
+    print("the average amount of calories per item at White castle is", meanvalue("White Castle", calories))
+    #standard deviation
+    print("the standard deviation of the sugars at Dairy Queen is", standarddev("Dairy Queen", sugars))
 
 main()

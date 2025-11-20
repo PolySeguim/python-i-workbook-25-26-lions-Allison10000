@@ -7,7 +7,7 @@ def filterlist(list):
         try:
             newlist.append(float(list[i]))
         except:
-            print("error on term", i)
+            print("error on the", (i+1),"th term")
     return newlist
 #function for mean 
 def meanvalue(list):
@@ -24,7 +24,7 @@ def standarddev(list):
     s = 0 
     for i in range(n):
         s += ((list[i] - n) **2)
-    s = (s/(n-1))
+    s = (s/(n))
     s = s ** (1/2)
     return s 
 #zscore function
@@ -33,6 +33,7 @@ def zscore(value, list):
     mean = meanvalue(newlist)
     s = standarddev(newlist)
     z = (value - mean)/s
-    return z
+    return round(z,4)
 print(zscore(5, [6,6,2,6,7,8,4,2,6,67,4,4,5,8]))
-print(zscore(5, [6,6,500, 600, 50, 8]))
+print(zscore(5, [6,6,500, 600, 'hi', 50, "9"]))
+print (standarddev([5,6,5,5,5,5,4,5]))
