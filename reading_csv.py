@@ -141,7 +141,5 @@ def main():
     print("the value of all the calories at macdonalds combined is", totalvalue("McDonald's", calories))
     #average value
     print("the average amount of calories per item at White castle is", meanvalue("White Castle", calories))
-    #standard deviation
-    print("the standard deviation of the sugars at Dairy Queen is", standarddev("Dairy Queen", sugars))
 
 main()
