@@ -245,8 +245,8 @@ def choosetodo():
         choosetodo() 
 #this is the main function that will always play
 #it will also redirect to other functions
-LetterDay = whatday(input("what letter day is it?"))
 def main():
+    LetterDay = whatday(input("what letter day is it?"))
     file_path = choose_file()
     read_csv(file_path)
     print("the current time is", timestuff())
@@ -256,5 +256,4 @@ def main():
     else:
         print("you are not in a class right now, classes have either not started or it is passing time")
     choosetodo()
-
 main()
