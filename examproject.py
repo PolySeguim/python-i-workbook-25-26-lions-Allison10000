@@ -6,6 +6,8 @@ import time
 import tkinter as tk
 from tkinter import filedialog
 import csv
+import turtle
+import random
 
 LetterDay=""
 A = []
@@ -21,6 +23,9 @@ todos=[]
 frees = []
 classnumber = 0 
 Totalgrade = 0
+decspecialschedulemonthdays = [1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 22, 23, 24, 25, 26, 29, 30, 31]
+decspecialscheduleevents = ["assembly", "christmas hope", "christmas hope", "christmas hope and spring sports signups", "christmas hope and the gingle", "church", "advent reconciliation", "resting before testing", "PALS, resting before testing", "resting before testing", "exams", "exams", "exams", "exams", "record day", "break", "break", "break","break","break","break","break","break"]# i intend to turn these long lists into csvs at some point            
+decspecialschedules = ["ACT 1", "Regular", "Regular", "HR 1", "HR 2", "ACT 5", "Regular", "Regular", "HR 1", "Regular", "exam", "exam", "exam", "exam", "no school", "no school","no school","no school","no school","no school","no school","no school","no school",]
 #refines the letter day to account for any errors 
 def whatday(day):
     if day == "A" or day == "a":
@@ -474,6 +479,75 @@ def classwithsomeoneelse(lday):
     for i in range(len(lday)):
         if lday[i] == theirclasses[i]:
             print("you have mod", i+1, ",", lday[i], "together")
+#this function will allow the user to input terms to practice with flashacard questions
+def flashcards():
+    terms = []
+    definitions = []
+    numberofterms = int(input("how many terms do you need to study?"))
+    for i in range(numberofterms):
+        print("for the", i+1, "term")
+        terms.append(input("term:"))
+        definitions.append(input("definition:"))
+    typeofquestion = input("do you want to answer with the term or definition")
+    if typeofquestion == "term" or typeofquestion == "Term":
+        for i in range(len(terms)):
+            item = random.randint(0,len(terms)-1)
+            print("the definition is", definitions[item])
+            givenanswer = input("what is the term")
+            if givenanswer == terms[item]:
+                print("correct")
+                print(" ")
+                terms.remove(terms[item])
+                definitions.remove(definitions[item])
+            else:
+                print("inccorect, the correct answer was", terms[item])
+                print(" ")
+    else:
+       for i in range(len(terms)):
+            item = random.randint(0,len(terms)-1)
+            print("the term is", terms[item])
+            givenanswer = input("what is the term")
+            if givenanswer == definitions[item]:
+                print("correct")
+                print(" ")
+                terms.remove(terms[item])
+                definitions.remove(definitions[item])
+            else:
+                print("inccorect, the correct answer was", definitions[item])
+                print(" ")
+    print("you have covered all the items")
+    print(" ")
+# this function will take the current day, see if it is a special scedule, and if not, say when the next will be 
+def specialschedules():
+    t = time.localtime()
+    monthday = t.tm_mday
+    print("today is the", monthday, "of december")
+    for i in range(len(decspecialschedulemonthdays)):
+        if decspecialschedulemonthdays[i] < int(monthday):
+            placeholder = "placeholder"
+        elif decspecialschedulemonthdays[i] == int(monthday):
+            print("there is an event today")
+            print("the event is", decspecialscheduleevents[i])
+            print("we will operate on a", decspecialschedules[i], "schedule")
+            break
+        elif decspecialschedulemonthdays[i] > int(monthday):
+            print("today there are no events and there are no special schedules")
+            print("the next event is on the", decspecialschedulemonthdays[i], "th")
+            print("the event is", decspecialscheduleevents[i], "and we will be on a", decspecialschedules[i], "schedule")
+            break
+    print(" ")
+#this is like the special schedule function but it is for a specific day
+def spicificdayscheduleandevent():
+    specificmonth = input("what month (only december works at the moment, stay tuned for more months)")
+    specificday = int(input("what day of the month?"))
+    if specificmonth =="Dec" or specificmonth == "december" or specificmonth == "December":
+        for i in range(len(decspecialschedulemonthdays)):
+            if decspecialschedulemonthdays[i] == specificday:
+                print("on the", specificday, "there is event", decspecialscheduleevents[i], "and opperates on a", decspecialschedules[i], "schedule")
+                break
+            elif decspecialschedulemonthdays[i] > specificday:
+                print("there was/are no events or special schedules on", specificday)
+                break
 #choose what you do with the info 
 def choosetodo(lday):
     print("what do you want to do")
@@ -483,6 +557,8 @@ def choosetodo(lday):
     print("input 4 to compare your schedule with someone else")
     print("input 5 to see your next class")
     print("input 6 to schedule your extracurriculars")
+    print("input 7 to create flashcards")
+    print("input 8 to see the schedule and event for a specific day")
     choosefunction = input("selection:")
     if choosefunction == "1":
         print(" ")
@@ -503,11 +579,17 @@ def choosetodo(lday):
     elif choosefunction == "6":
         print(" ")
         extraccurricular()
+    elif choosefunction == "7":
+        print(" ")
+        flashcards()
+    elif choosefunction == "8":
+        print(" ")
+        spicificdayscheduleandevent()
     more = input("do you have anything else you want to do?")
     if more == "yes" or more == "Yes":
         print(" ")
         choosetodo(lday) 
-#this is the main function that will always play
+#this is the main function that should always play
 #it will also redirect to other functions
 def main():
     file_path = choose_file()
@@ -521,5 +603,6 @@ def main():
     else:
         print("you are not in a class right now, classes have either not started or it is passing time")
     print(" ")
+    specialschedules()
     choosetodo(LetterDay)
 main()
