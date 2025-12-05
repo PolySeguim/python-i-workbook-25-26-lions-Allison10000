@@ -25,9 +25,16 @@ classnumber = 0
 Totalgrade = 0
 decspecialschedulemonthdays = [1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 22, 23, 24, 25, 26, 29, 30, 31]
 decspecialscheduleevents = ["assembly", "christmas hope", "christmas hope", "christmas hope and spring sports signups", "christmas hope and the gingle", "church", "advent reconciliation", "resting before testing", "PALS, resting before testing", "resting before testing", "exams", "exams", "exams", "exams", "record day", "break", "break", "break","break","break","break","break","break"]# i intend to turn these long lists into csvs at some point            
+decmonthdays = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
+deccycledays = ["E","F","A", "A", "A", "B","C","D","E","F","F","F","F","F","F"]
 decspecialschedules = ["ACT 1", "Regular", "Regular", "HR 1", "HR 2", "ACT 5", "Regular", "Regular", "HR 1", "Regular", "exam", "exam", "exam", "exam", "no school", "no school","no school","no school","no school","no school","no school","no school","no school",]
 #refines the letter day to account for any errors 
-def whatday(day):
+def whatday():
+    t = time.localtime()
+    monthday = t.tm_mday
+    for i in range(len(decmonthdays)):
+        if decmonthdays[i] == monthday:
+            day = deccycledays[i]
     if day == "A" or day == "a":
         return A
     elif day == "B" or day =="b":
@@ -40,6 +47,27 @@ def whatday(day):
         return E
     elif day == "F" or day == "f":
         return F
+    else:
+        print("invalid day given")
+#returns the letter day as a string
+def whatletterday():
+    t = time.localtime()
+    monthday = t.tm_mday
+    for i in range(len(decmonthdays)):
+        if decmonthdays[i] == monthday:
+            day = deccycledays[i]
+    if day == "A" or day == "a":
+        return "A"
+    elif day == "B" or day =="b":
+        return "B"
+    elif day == "C" or day == "c":
+        return "C"
+    elif day == "D" or day == "d":
+        return "D"
+    elif day == "E" or day == "e":
+        return "E"
+    elif day == "F" or day == "f":
+        return "F"
     else:
         print("invalid day given")
 #determines the mod depending on the time using an annoying amount of conditionals 
@@ -226,6 +254,42 @@ def findfrees(rday):
         if rday[i] == "Free":
             frees.append(Mods[i])
     return frees
+#this function will show your schedule on a specific day
+def chooseday():
+    typeofday = input("do you want to see your schedule from the monthday or letterday")
+    if typeofday in ["monthday", "Monthday", "Month Day", "Month day", "month day"]:
+        choosenday = int(input("what month day? "))
+        for i in range(len(decmonthdays)):
+            if choosenday == int(decmonthdays[i]):
+                newchooosenday = (deccycledays[i])
+        if newchooosenday == "A":
+            choosenday = A
+        elif newchooosenday == "B":
+            choosenday = B
+        elif newchooosenday == "C":
+            choosenday = C
+        elif newchooosenday == "D":
+            choosenday = D
+        elif newchooosenday == "E":
+            choosenday = E
+        elif newchooosenday == "F":
+            choosenday = F
+    else:
+        choosenday = input("what letter day? ")
+        if choosenday in ["A","a"]:
+            choosenday = A
+        elif choosenday in ["B","b"]:
+            choosenday = B
+        elif choosenday in ["C","c"]:
+            choosenday = C
+        elif choosenday in ["D","d"]:
+            choosenday = D
+        elif choosenday in ["E","e"]:
+            choosenday = E
+        elif choosenday in ["F","f"]:
+            choosenday = F
+    for i in range(len(choosenday)):
+        print(choosenday[i])
 #free mod scheduling 
 def freescheduling(frees, thingstodo):
     print(" ")
@@ -243,55 +307,53 @@ def freescheduling(frees, thingstodo):
 #this function will calculate your GPA
 def gpacalculator():
     Totalgrade = 0.0
-    classnumber = 1
+    classnumber = 0
     #create a function that will prompt the user to imput the grade and level of a class and it will add to
     def gradeiteration():
-        Totalgrade = 0.0
-        classnumber = 1.0
-        currentclassgrade = input("what was your letter grade in a class")
-        currentclasslevel = input("what level was this class, Honors, AP, or Regular")
+        nonlocal Totalgrade, classnumber
+        currentclassgrade = input("what was your letter grade in a class: ")
+        currentclasslevel = input("what level was this class, Honors, AP, or Regular: ")
         #filtering class grade
         if currentclassgrade == "A" or currentclassgrade == "a" or currentclassgrade == "A+" or currentclassgrade == "a+":
-            currentclassgrade = 4.0
+            gradepoints = 4.0
         elif currentclassgrade == "A-" or currentclassgrade == "a-":
-            currentclassgrade = 3.6
+            gradepoints = 3.6
         elif currentclassgrade == "B+" or currentclassgrade == "b+":
-            currentclassgrade = 3.3
+            gradepoints = 3.3
         elif currentclassgrade == "B" or currentclassgrade == "b":
-            currentclassgrade = 3.0
+            gradepoints = 3.0
         elif currentclassgrade == "B-" or currentclassgrade == "b-":
-            currentclassgrade = 2.6
+            gradepoints = 2.6
         elif currentclassgrade == "C+" or currentclassgrade == "c+":
-            currentclassgrade = 2.3
+            gradepoints = 2.3
         elif currentclassgrade == "C" or currentclassgrade == "c":
-            currentclassgrade = 2.0
+            gradepoints = 2.0
         elif currentclassgrade == "C-" or currentclassgrade == "c-":
-            currentclassgrade = 1.6
+            gradepoints = 1.6
         elif currentclassgrade == "D+" or currentclassgrade == "d+":
-            currentclassgrade = 1.3
+            gradepoints = 1.3
         elif currentclassgrade == "D" or currentclassgrade == "d":
-            currentclassgrade = 1.0
+            gradepoints = 1.0
         elif currentclassgrade == "D-" or currentclassgrade == "d-":
-            currentclassgrade = 0.6
+            gradepoints = 0.6
         elif currentclassgrade == "F" or currentclassgrade == "f":
-            currentclassgrade = 0
+            gradepoints = 0
         #filtering class level
         if currentclasslevel == "Honors" or currentclasslevel == "honors":
-            currentclasslevel = 1.15
+            levelmultiply = 1.15
         elif currentclasslevel == "AP" or currentclasslevel == "ap" or currentclasslevel == "Ap":
-            currentclasslevel = 1.25
+            levelmultiply = 1.25
         else:
-            currentclasslevel = 1 
+            levelmultiply = 1 
         #adding to overal average 
-        Totalgrade += (currentclasslevel * currentclassgrade)
-        moregrades = input("do you have more classes to input")
+        Totalgrade += (float(gradepoints) * float(levelmultiply))
+        classnumber+=1
+        moregrades = input("do you have more classes to input? ")
         if moregrades == "Yes" or moregrades == "yes":
-            classnumber += 1.0
             gradeiteration()
-        return Totalgrade
-    newgrade = gradeiteration()
-    newnewgrade = newgrade / classnumber
-    print("your gpa is ", newnewgrade)
+    gradeiteration()
+    newnewgrade = Totalgrade / classnumber
+    print("your gpa is ", round(newnewgrade,2))
 #with this function, you can input your extracurriculars and it will tell you what you have to do on a certian day
 def extraccurricular():
     currentweekday = time.ctime()
@@ -333,57 +395,39 @@ def extraccurricular():
     extracurricularschedule()
     print(" ")
     def displayscheduleitems(rschedule):
-        print(" ")
-        if len(rschedule) == 0:
-            print("you have no extracurriculars this day")
+        if len(rschedule) < 1:
+            print("you have no extracurriculars this day")  
         else:
             for i in range(len(rschedule)):
-                print(rschedule[i])       
+                print(rschedule[i])
     if currentweekday == "Sat":
+            print("today is saturday")
             print("your extracurriculars to do today are:")
             displayscheduleitems(satschedule)
     elif currentweekday == "Sun":
         print("today is Sunday")
-        if sunschedule == []:
-            sunschedule = "you have no extracurriculars today"
-        else:
-            print("your extracurriculars to do today are:")
-            displayscheduleitems(sunschedule)
+        print("yor extracurriculars tody are:")
+        displayscheduleitems(sunschedule)
     elif currentweekday == "Mon":
         print("today is Monday")
-        if monschedule == []:
-            monschedule = "you have no extracurriculars today"
-        else: 
-            print("your extracurriculars to do today are:")
-            displayscheduleitems(monschedule)
+        print("your extracurriculars to do today are:")
+        displayscheduleitems(monschedule)
     elif currentweekday == "Tue":
         print("today is Tuesday")
-        if tueschedule == []:
-            tueschedule = "you have no extracurriculars today"
-        else:
-            print("your extracurriculars to do today are:")
-            displayscheduleitems(tueschedule)
+        print("your extracurriculars to do today are:")
+        displayscheduleitems(tueschedule)
     elif currentweekday == "Wed":
         print("today is Wednesday")
-        if wedschedule == []:
-            wedschedule = "you have no extracurriculars today"
-        else:
-            print("your extracurriculars to do today are:")
-            displayscheduleitems(wedschedule)
+        print("your extracurriculars to do today are:")
+        displayscheduleitems(wedschedule)
     elif currentweekday == "Thu":
         print("today is Thursday")
-        if thuschedule == []:
-            thuschedule = "you have no extracurriculars today"
-        else:
-            print("your extracurriculars to do today are:")
-            displayscheduleitems(thuschedule)
+        print("your extracurriculars to do today are:")
+        displayscheduleitems(thuschedule)
     elif currentweekday == "Fri":
         print("today is Friday")
-        if frischedule == []:
-            frischedule = "you have no extracurriculars today"
-        else:
-            print("your extracurriculars to do today are:")
-            displayscheduleitems(frischedule)
+        print("your extracurriculars to do today are:")
+        displayscheduleitems(frischedule)
     else:
         print("error in determining day")
     def moreschedules():
@@ -421,39 +465,47 @@ def whatnextclass(lday):
     cclass = lday[cmod-1]
     if cclass != lday[cmod]:
         try:
-            print("your next class is", lday[cmod], "durring mod", cmod+1)
+            print("your next class is: ", lday[cmod], "durring mod", cmod+1)
+            print(" ")
         except:
             print("error, it is most likely in your last class")
     elif cclass != lday[cmod+1]:
         try: 
-            print ("your next class is" ,lday[cmod+1], "durring mod", cmod+2)
+            print ("your next class is: " ,lday[cmod+1], "durring mod", cmod+2)
+            print(" ")
         except:
             print("error, it is most likely in your last class")
     elif cclass != lday[cmod+2]:
         try:
-            print ("your next class is" ,lday[cmod+2], "durring mod", cmod+3)
+            print ("your next class is: " ,lday[cmod+2], "durring mod", cmod+3)
+            print(" ")
         except:
             print("error, it is most likely in your last class")
     elif cclass != lday[cmod+3]:
         try:
-            print ("your next class is" ,lday[cmod+3], "durring mod", cmod+4)
+            print ("your next class is: " ,lday[cmod+3], "durring mod", cmod+4)
+            print(" ")
         except:
             print("error, it is most likely in your last class")
     elif cclass != lday[cmod+4]:
         try:
-            print ("your next class is" ,lday[cmod+4], "durring mod", cmod+5)
+            print ("your next class is:" ,lday[cmod+4], "durring mod", cmod+5)
+            print(" ")
         except:
             print("error, it is most likely in your last class")
     elif cclass != lday[cmod+5]:
         try:
-            print ("your next class is" ,lday[cmod+5], "durring mod", cmod+6)
+            print ("your next class is:" ,lday[cmod+5], "durring mod", cmod+6)
+            print(" ")
         except:
             print("error, it is most likely in your last class")
     elif cclass != lday[cmod+6]:
         try:
-            print ("your next class is" ,lday[cmod+6], "durring mod", cmod+7)
+            print ("your next class is:" ,lday[cmod+6], "durring mod", cmod+7)
+            print(" ")
         except:
             print("error, it is most likely in your last class")
+    print(" ")
 #function to input a friends frees and it will tell you when you are compatable
 def classwithsomeoneelse(lday):
     theirclasses = []
@@ -489,8 +541,10 @@ def flashcards():
         terms.append(input("term:"))
         definitions.append(input("definition:"))
     typeofquestion = input("do you want to answer with the term or definition")
+    print(" ")
     if typeofquestion == "term" or typeofquestion == "Term":
-        for i in range(len(terms)):
+        #for i in range(len(terms)):
+        while(len(terms)>0):
             item = random.randint(0,len(terms)-1)
             print("the definition is", definitions[item])
             givenanswer = input("what is the term")
@@ -503,7 +557,8 @@ def flashcards():
                 print("inccorect, the correct answer was", terms[item])
                 print(" ")
     else:
-       for i in range(len(terms)):
+       #for i in range(len(terms)):
+       while (len(terms) > 0):
             item = random.randint(0,len(terms)-1)
             print("the term is", terms[item])
             givenanswer = input("what is the term")
@@ -513,7 +568,8 @@ def flashcards():
                 terms.remove(terms[item])
                 definitions.remove(definitions[item])
             else:
-                print("inccorect, the correct answer was", definitions[item])
+                terms.append(terms[item])
+                print("incorect, the correct answer was", definitions[item])
                 print(" ")
     print("you have covered all the items")
     print(" ")
@@ -558,33 +614,39 @@ def choosetodo(lday):
     print("input 5 to see your next class")
     print("input 6 to schedule your extracurriculars")
     print("input 7 to create flashcards")
-    print("input 8 to see the schedule and event for a specific day")
+    print("input 8 to see the special schedule and event for a specific day")
+    print("input 9 to see your schedle on a specific day")
     choosefunction = input("selection:")
-    if choosefunction == "1":
+    if choosefunction == "1" or choosefunction == "1 ":
         print(" ")
         toodos = todoloop()
         freescheduling(findfrees(lday), toodos)
-    elif choosefunction == "2":
+    elif choosefunction == "2"or choosefunction == "2 ":
         print(" ")
-        print("you are free mods", findfrees(lday))
-    elif choosefunction == "3":
+        print("you are free mods:")
+        for i in range(len(findfrees(lday))):
+            print((findfrees(lday))[i])
+    elif choosefunction == "3"or choosefunction == "3 ":
         print(" ")
         gpacalculator()
-    elif choosefunction == "4":
+    elif choosefunction == "4"or choosefunction == "4 ":
         print(" ")
         classwithsomeoneelse(lday)
-    elif choosefunction == "5":
+    elif choosefunction == "5"or choosefunction == "5 ":
         print(" ")
         whatnextclass(lday)
-    elif choosefunction == "6":
+    elif choosefunction == "6"or choosefunction == "6 ":
         print(" ")
         extraccurricular()
-    elif choosefunction == "7":
+    elif choosefunction == "7"or choosefunction == "7 ":
         print(" ")
         flashcards()
-    elif choosefunction == "8":
+    elif choosefunction == "8"or choosefunction == "8 ":
         print(" ")
         spicificdayscheduleandevent()
+    elif choosefunction in ["9","9 "]:
+        print(" ")
+        chooseday()
     more = input("do you have anything else you want to do?")
     if more == "yes" or more == "Yes":
         print(" ")
@@ -594,14 +656,15 @@ def choosetodo(lday):
 def main():
     file_path = choose_file()
     read_csv(file_path)
-    LetterDay = whatday(input("what letter day is it?"))
+    LetterDay = whatday()
     print(" ")
-    print("the current time is", timestuff())
+    print("today's letter day is: ", whatletterday())
+    print("the current time is: ", timestuff())
     print("we are in mod", moddromtime(timestuff()))
     if type(moddromtime(timestuff())) == int or type(moddromtime(timestuff())) == float:
-        print("you are currently in", LetterDay[int(moddromtime(timestuff())-1)])
+        print("You are currently in: ", LetterDay[int(moddromtime(timestuff())-1)])
     else:
-        print("you are not in a class right now, classes have either not started or it is passing time")
+        print("You are not in a class right now, classes have either not started or it is passing time.")
     print(" ")
     specialschedules()
     choosetodo(LetterDay)
