@@ -529,7 +529,11 @@ def classwithsomeoneelse(lday):
     theirclasses.append(input("what is their class mod 18"))
     print(" ")
     for i in range(len(lday)):
-        if lday[i] == theirclasses[i]:
+        yourday = theirclasses[i]
+        yourday = yourday.lower()
+        myday = lday[i]
+        myday = myday.lower()
+        if myday == yourday:
             print("you have mod", i+1, ",", lday[i], "together")
 #this function will allow the user to input terms to practice with flashacard questions
 def flashcards():
@@ -625,7 +629,8 @@ def choosetodo(lday):
         print(" ")
         print("you are free mods:")
         for i in range(len(findfrees(lday))):
-            print((findfrees(lday))[i])
+            print(((findfrees(lday))[i]), ",", end = " ")
+        print(" ")
     elif choosefunction == "3"or choosefunction == "3 ":
         print(" ")
         gpacalculator()
@@ -650,7 +655,10 @@ def choosetodo(lday):
     more = input("do you have anything else you want to do?")
     if more == "yes" or more == "Yes":
         print(" ")
-        choosetodo(lday) 
+        choosetodo(lday)
+    elif more in ["1", "2", "3", "4", "5", "6", "7", "8", "9","1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 "]:
+        print(" ")
+        choosetodo(lday)
 #this is the main function that should always play
 #it will also redirect to other functions
 def main():

@@ -92,3 +92,5 @@ def exercise25():
 
 
 exercise25()
+input("question")
+print(input("question"))
