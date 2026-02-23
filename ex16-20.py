@@ -1,4 +1,4 @@
-
+import math
 """
 Exercise 16:  Area and Volume
 Write a program that begins by reading a radius, r, from the user.  The program 
@@ -9,7 +9,10 @@ module in your calculations.
 Hint:  The are of  circle is computed using the formula area = pi*r**2.  The 
 volume of a sphere is computed using the formula volume = 4/3 * pi * r**3.
 """
-
+def  exercise16():
+    r = float(input("r:"))
+    print("the area of the circle is", math.pi*r**2)
+    print("the volume of the sphere is", 4/3*math.pi*r**3)
 """
 Exercise 17:  Heat Capacity
 The amount of energy required to increase the temperature of one gram of 
@@ -35,7 +38,14 @@ Hint:  You will need to look up the factor for converting between Joules
 and kilowatt hours to complete the last part of this exercise.
 (25 lines)
 """
-
+def exercise17():
+    mass = float(input("mass:"))
+    temp = float(input("temp change"))
+    q = (mass*4.186)*temp
+    print("the amount of energy it takes is", round(q, 2))
+    q = q/3600000
+    price = q*0.089
+    print("the price is $", price)
 """
 Exercise 18:  Volume of a Cylinder
 The volume of a cylinder can be computed by multiplying the area of its 
@@ -44,7 +54,10 @@ cylinder, along with its height, from the user and computes its volume.
 Display the result rounded to one decimal place.
 (15 lines)
 """
-
+def exercise18():
+    r = float(input("r: "))
+    h = float(input("h: "))
+    print("the volume of the cillander is", round((math.pi*r**2)**h),2)
 """
 Exercise 19:  Free Fall
 Create a program that determines how quickly an object is traveling when it 
@@ -56,7 +69,12 @@ when the initial speed, vi, acceleration, a, and distance, d, are known.
 (16 lines)
 """
 
-
+def exercise19():
+    h = float(input("h: "))
+    vi = float(0)
+    a = 9.8
+    vf = round((vi**2 + (2*a*h))**(1/2),2)
+    print("the final velocity is", vf)
 """
 Exercise 20: Ideal Gas Law
 The ideal gas law is a mathematical approximation of the behavior of gasses as 
@@ -80,6 +98,12 @@ by 5/9 and then add 273.15 to it.
 
 (19 lines)
 """
+def exercise20():
+    r=8.314
+    t = (float(input("temperature in K")))+273.15
+    v = float(input("v:"))
+    n = float(input("moles:"))
+    p = (n*r*t)/v
+    print("the pressure is", float(p))
 
-if __name__ == "__main__":
-    print("Hi there!")
+
