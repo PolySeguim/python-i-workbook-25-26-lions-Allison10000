@@ -676,4 +676,3 @@ def main():
     print(" ")
     specialschedules()
     choosetodo(LetterDay)
-main()
